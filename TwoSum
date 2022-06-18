@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        //Optimised Solution using hashmap
+        vector<int> twoSumIndex(2,0);
+        int n=nums.size();
+        unordered_map<int,int> valueIndexMap;
+        for(int i=0;i<n;i++)
+        {
+            int second=target-nums[i];
+            if(valueIndexMap.find(second)!=valueIndexMap.end()) //finding next element
+            {
+                twoSumIndex[0]=valueIndexMap[second]; //index of first element
+                twoSumIndex[1]=i; //storing the current second element index
+                break;
+            }else{
+                valueIndexMap[nums[i]]=i; //storing current element and its index as pair
+            }
+        }
+        return twoSumIndex;
+        
+    }
+};
